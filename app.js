@@ -1,7 +1,7 @@
 // THE CLASS FILES — Supabase client
 // Paste your project's URL and anon/public key below. NEVER put the service_role key here.
-const SUPABASE_URL = "YOUR_SUPABASE_URL";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+const SUPABASE_URL = "https://acgcosjsdephtsishcut.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_0up5wdqCrybM29PU0ETPyw_qOuomA6N";
 const MEDIA_BUCKET = "class-media";
 const MAX_FILE_BYTES = 40 * 1024 * 1024;
 
