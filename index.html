@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>THE CLASS FILES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-card panel">
+      <div class="eyebrow">⚡ A CLASSROOM ORIGINAL</div>
+      <div class="brand">THE CLASS FILES</div>
+      <h1>Every class has<br><span>a story.</span></h1>
+      <p class="muted">A private-feeling corner of the internet for class memories, photos and stories.</p>
+      <form id="auth-form">
+        <label id="name-label" class="field">USERNAME
+          <input id="username" minlength="3" maxlength="20" autocomplete="username" required placeholder="e.g. alex_11">
+        </label>
+        <label id="email-label" class="field hidden">EMAIL (FOR ACCOUNT RECOVERY)
+          <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label class="field">PASSWORD
+          <input id="password" type="password" minlength="8" autocomplete="current-password" required placeholder="At least 8 characters">
+        </label>
+        <button id="auth-submit" class="gold-button full" type="submit">⚡ ENTER THE FILES</button>
+      </form>
+      <p class="auth-switch"><span id="switch-copy">New here?</span> <button id="auth-switch" class="text-button" type="button">Create an account</button></p>
+      <p class="tiny muted">Use a unique password. Never share passwords with classmates.</p>
+      <p id="config-warning" class="warning hidden">Add your Supabase URL and anon key in app.js before using the site.</p>
+    </div>
+  </section>
+
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <a class="brand brand-small" href="#" aria-label="The Class Files home">⚡ THE CLASS FILES</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button data-page="home" class="nav-button active">Feed</button>
+        <button data-page="directory" class="nav-button">Classmates</button>
+        <button data-page="profile" class="nav-button">My Profile</button>
+      </nav>
+      <button id="logout" class="outline-button">Log out</button>
+    </header>
+
+    <main class="shell">
+      <section id="page-home" class="page">
+        <div class="hero panel">
+          <div class="eyebrow">THE CLASS ARCHIVE</div>
+          <h2>Welcome to<br><span>your story.</span></h2>
+          <p class="muted">The best memories happen between the bells.</p>
+          <div class="hero-bolt">⚡</div>
+        </div>
+
+        <form id="post-form" class="panel composer">
+          <div class="eyebrow">✦ DROP A MEMORY</div>
+          <textarea id="post-content" maxlength="3000" placeholder="What's happening in your class universe?"></textarea>
+          <div class="composer-bottom">
+            <label class="file-button">＋ Add photo / video
+              <input id="post-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime">
+            </label>
+            <span id="file-name" class="tiny muted">No file selected</span>
+            <button class="gold-button" type="submit">⚡ Publish</button>
+          </div>
+          <p class="tiny muted">Max 40 MB per upload. Only post media you have permission to share.</p>
+        </form>
+
+        <div class="section-heading"><span class="eyebrow">LATEST CLASS STORIES</span><button id="refresh-feed" class="text-button">Refresh ↻</button></div>
+        <div id="feed" class="feed"><div class="empty panel">Loading class stories…</div></div>
+      </section>
+
+      <section id="page-directory" class="page hidden">
+        <div class="hero panel compact-hero"><div class="eyebrow">THE ROSTER</div><h2>Meet the <span>class.</span></h2><p class="muted">Find classmates and explore their public profiles.</p></div>
+        <input id="people-search" class="search-input" placeholder="Search classmates…">
+        <div id="people" class="people-grid"></div>
+      </section>
+
+      <section id="page-profile" class="page hidden">
+        <div id="profile-content"></div>
+      </section>
+    </main>
+    <footer>THE CLASS FILES <span>⚡</span> Share memories respectfully. Report harmful content to your class admin.</footer>
+  </div>
+
+  <dialog id="comments-dialog" class="comments-dialog panel">
+    <div class="dialog-head"><h3>Comments</h3><button id="close-comments" class="outline-button">Close</button></div>
+    <div id="dialog-comments"></div>
+    <form id="comment-form" class="comment-form">
+      <input id="comment-input" maxlength="1000" placeholder="Write a comment…" required>
+      <button class="gold-button" type="submit">Send</button>
+    </form>
+  </dialog>
+</body>
+</html>
